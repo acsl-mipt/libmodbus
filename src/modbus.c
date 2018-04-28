@@ -302,6 +302,9 @@ static int compute_data_length_after_meta(modbus_t *ctx, uint8_t *msg,
             function == _FC_REPORT_SLAVE_ID ||
             function == _FC_WRITE_AND_READ_REGISTERS) {
             length = msg[ctx->backend->header_length + 1];
+        } else if (function == 0x41) {
+			// Modification to support the custom Leddar 0x41 command:
+			length = (5 * msg[ctx->backend->header_length + 1]) + 6;
         } else {
             length = 0;
         }
@@ -428,7 +431,7 @@ static int receive_msg(modbus_t *ctx, uint8_t *msg, msg_type_t msg_type)
             case _STEP_META:
                 length_to_read = compute_data_length_after_meta(
                     ctx, msg, msg_type);
-                if ((msg_length + length_to_read) > ctx->backend->max_adu_length) {
+                if ((msg_length + length_to_read) > (signed)ctx->backend->max_adu_length) {
                     errno = EMBBADDATA;
                     _error_print(ctx, "too many data");
                     return -1;

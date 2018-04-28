@@ -469,8 +469,8 @@ static int _modbus_rtu_connect(modbus_t *ctx)
        NDELAY option is set on the file via open or fcntl */
     ctx->s = open(ctx_rtu->device, O_RDWR | O_NOCTTY | O_NDELAY | O_EXCL);
     if (ctx->s == -1) {
-        fprintf(stderr, "ERROR Can't open the device %s (%s)\n",
-                ctx_rtu->device, strerror(errno));
+        fprintf(stderr, "ERROR Can't open the device %s (%i: %s)\n",
+                ctx_rtu->device, errno, strerror(errno));
         return -1;
     }
 
