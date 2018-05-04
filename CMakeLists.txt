@@ -56,6 +56,8 @@ include_directories(${CMAKE_CURRENT_BINARY_DIR})
 
 add_library(modbus SHARED
     ${CMAKE_CURRENT_SOURCE_DIR}/src/modbus/modbus.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/modbus/modbus-LT.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/modbus/modbus-LT.c
     ${CMAKE_CURRENT_SOURCE_DIR}/src/modbus/modbus-private.h
     ${CMAKE_CURRENT_SOURCE_DIR}/src/modbus/modbus-rtu.h
     ${CMAKE_CURRENT_SOURCE_DIR}/src/modbus/modbus-rtu-private.h
