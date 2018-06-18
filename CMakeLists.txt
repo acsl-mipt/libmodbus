@@ -54,7 +54,7 @@ configure_file(${CMAKE_CURRENT_SOURCE_DIR}/cmake/config.h.in ${CMAKE_CURRENT_BIN
 
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
 
-add_library(modbus SHARED
+add_library(modbus STATIC
     ${CMAKE_CURRENT_SOURCE_DIR}/src/modbus/modbus.h
     ${CMAKE_CURRENT_SOURCE_DIR}/src/modbus/modbus-LT.h
     ${CMAKE_CURRENT_SOURCE_DIR}/src/modbus/modbus-LT.c
